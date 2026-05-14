@@ -5,9 +5,10 @@ import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
 import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
+import dts from 'rollup-plugin-dts';
 
-export default {
-  input: 'src/index.js',
+const mainConfig = {
+  input: 'src/index.ts',
   output: [
     {
       file: 'dist/index.js',
@@ -24,21 +25,37 @@ export default {
   plugins: [
     external(),
     postcss({
-      modules: true, // Enable CSS Modules
-      extract: false, // Inline styles in JS
+      modules: true,
+      extract: false,
       minimize: true,
-      use: ['sass'], // If you want to use SASS
+      use: ['sass'],
     }),
     resolve({
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }),
     commonjs(),
     babel({
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
       babelHelpers: 'bundled',
       exclude: 'node_modules/**',
-      presets: ['@babel/preset-env', '@babel/preset-react']
+      presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
     }),
     terser(),
   ]
 };
+
+const dtsConfig = {
+  input: 'src/index.ts',
+  output: {
+    file: 'dist/index.d.ts',
+    format: 'es',
+  },
+  external: ['react'],
+  plugins: [
+    dts({
+      respectExternal: true,
+    }),
+  ],
+};
+
+export default [mainConfig, dtsConfig];

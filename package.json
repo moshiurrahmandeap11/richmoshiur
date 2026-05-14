@@ -1,22 +1,27 @@
 {
   "name": "richmoshiur",
-  "version": "1.1.1",
-  "description": "A custom rich text editor component for React",
+  "version": "1.2.0",
+  "description": "A lightweight, fully-typed React rich text editor component with formatting, lists, and link support",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [
     "react",
     "richmoshiur",
     "rich-text-editor",
-    "editor"
+    "editor",
+    "typescript",
+    "contenteditable",
+    "wysiwyg"
   ],
   "author": "Moshiur Rahman Deap",
   "license": "MIT",
@@ -39,13 +44,17 @@
     "@babel/core": "^7.20.0",
     "@babel/preset-env": "^7.20.0",
     "@babel/preset-react": "^7.18.0",
+    "@babel/preset-typescript": "^7.20.0",
     "@rollup/plugin-babel": "^6.0.0",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-terser": "^0.4.0",
+    "@types/react": "^18.2.0",
     "postcss": "^8.5.14",
     "rollup": "^3.0.0",
+    "rollup-plugin-dts": "^6.4.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "typescript": "^5.0.0"
   }
 }
