@@ -6,6 +6,12 @@
 
 ![richmoshiur banner](https://i.postimg.cc/HnzNmdsh/rich.gif)
 
+## Installation
+
+```bash
+npm install richmoshiur
+```
+
 ## Features
 
 - ✨ Bold, italic, and underline formatting
@@ -17,11 +23,6 @@
 - 🔄 Dual bundle output (ESM and CommonJS)
 - ⚡ Lightweight and optimized for modern React applications
 
-## Installation
-
-```bash
-npm install richmoshiur
-```
 
 ## Usage
 
