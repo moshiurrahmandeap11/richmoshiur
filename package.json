@@ -22,7 +22,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moshiurrahmandeap11/richmoshiur.git"
+    "url": "git+https://github.com/moshiurrahmandeap11/richmoshiur.git"
   },
   "bugs": {
     "url": "https://github.com/moshiurrahmandeap11/richmoshiur/issues"
