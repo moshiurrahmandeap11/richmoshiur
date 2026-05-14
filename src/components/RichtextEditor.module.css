@@ -1,0 +1,310 @@
+/* src/components/RichtextEditor.module.css */
+.richTextEditor {
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Toolbar Styles */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px 12px 0 0;
+}
+
+.toolbarButton {
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.toolbarButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.toolbarButton strong {
+    font-weight: 700;
+}
+
+.toolbarButton em {
+    font-style: italic;
+}
+
+.toolbarButton u {
+    text-decoration: underline;
+}
+
+.separator {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 0.25rem;
+}
+
+.buttonContent {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.buttonLabel {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .toolbar {
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .toolbarButton {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .buttonLabel {
+        display: inline;
+    }
+
+    .separator {
+        height: 32px;
+    }
+}
+
+/* Link Input Styles */
+.linkInput {
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+}
+
+.linkInputGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+    .linkInput {
+        padding: 1rem;
+    }
+
+    .linkInputGrid {
+        gap: 0.75rem;
+    }
+}
+
+.inputLabel {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.25rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.input:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.inputHelp {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 0.25rem;
+}
+
+.linkButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.insertButton {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.insertButton:hover {
+    background: #2563eb;
+}
+
+.cancelButton {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.cancelButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Editor Area Styles */
+.editor {
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap;
+    direction: ltr !important;
+    text-align: left !important;
+    line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+    .editor {
+        padding: 1rem;
+        min-height: 200px;
+        max-height: 400px;
+    }
+}
+
+.editor:empty:before {
+    content: attr(data-placeholder);
+    color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    font-style: italic;
+}
+
+.editor * {
+    direction: ltr !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    max-width: 100%;
+}
+
+.editor p {
+    margin: 0 0 8px 0;
+    word-wrap: break-word;
+}
+
+.editor ul,
+.editor ol {
+    margin: 8px 0;
+    padding-left: 24px;
+}
+
+.editor li {
+    margin: 4px 0;
+    padding-left: 4px;
+}
+
+.editor ul {
+    list-style-type: disc;
+}
+
+.editor ol {
+    list-style-type: decimal;
+}
+
+.editor a {
+    color: #3b82f6 !important;
+    text-decoration: underline;
+    cursor: pointer;
+    word-break: break-all;
+}
+
+.editor a:hover {
+    color: #60a5fa !important;
+}
+
+.editor strong {
+    font-weight: 700;
+}
+
+.editor em {
+    font-style: italic;
+}
+
+.editor u {
+    text-decoration: underline;
+}
+
+.editor img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.editor table {
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+.editor pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
+}
+
+/* Scrollbar Styles */
+.editor::-webkit-scrollbar {
+    width: 6px;
+}
+
+.editor::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.editor::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    transition: background 0.2s;
+}
+
+.editor::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Firefox Scrollbar */
+.editor {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
