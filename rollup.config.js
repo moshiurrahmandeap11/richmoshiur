@@ -7,14 +7,20 @@ import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
 
+const extensions = ['.js', '.jsx', '.ts', '.tsx'];
+
 const mainConfig = {
   input: 'src/index.ts',
+  // React-কে external হিসেবে চিহ্নিত করুন
+  external: ['react', 'react-dom', 'react/jsx-runtime'],
   output: [
     {
       file: 'dist/index.js',
       format: 'cjs',
       sourcemap: true,
       exports: 'named',
+      // CommonJS-এ React import ঠিক করার জন্য
+      interop: 'auto',
     },
     {
       file: 'dist/index.esm.js',
@@ -23,22 +29,39 @@ const mainConfig = {
     }
   ],
   plugins: [
-    external(),
+    external(),  // Peer dependencies automatically external
     postcss({
-      modules: true,
+      modules: {
+        // CSS Modules ক্লাস নেম জেনারেট করুন
+        generateScopedName: 'richmoshiur_[name]__[local]__[hash:base64:5]',
+      },
       extract: false,
       minimize: true,
+      inject: true,  // CSS ইনজেক্ট করুন
       use: ['sass'],
     }),
     resolve({
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      extensions,
     }),
-    commonjs(),
+    commonjs({
+      include: /node_modules/,
+    }),
     babel({
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      extensions,
       babelHelpers: 'bundled',
       exclude: 'node_modules/**',
-      presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
+      presets: [
+        ['@babel/preset-env', {
+          targets: {
+            browsers: ['> 1%', 'last 2 versions', 'not dead']
+          },
+          modules: false,
+        }],
+        ['@babel/preset-react', {
+          runtime: 'automatic',  // JSX Transform
+        }],
+        '@babel/preset-typescript'
+      ]
     }),
     terser(),
   ]
@@ -50,7 +73,7 @@ const dtsConfig = {
     file: 'dist/index.d.ts',
     format: 'es',
   },
-  external: ['react'],
+  external: ['react', 'react-dom', /\.css$/],
   plugins: [
     dts({
       respectExternal: true,

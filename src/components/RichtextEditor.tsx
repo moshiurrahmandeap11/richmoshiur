@@ -1,4 +1,4 @@
-import { FC, useState, useRef, useEffect, ClipboardEvent, KeyboardEvent } from 'react';
+import React, { FC, useState, useRef, useEffect, ClipboardEvent, KeyboardEvent } from 'react';
 import styles from './RichtextEditor.module.css';
 
 /**
