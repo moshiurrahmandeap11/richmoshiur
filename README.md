@@ -2,6 +2,10 @@
 
 `richmoshiur` is a lightweight, fully-typed React rich text editor component built for modern TypeScript applications. It provides a polished editing toolbar with formatting controls, list management, link insertion, and comprehensive type definitions for seamless IDE support.
 
+## Banner
+
+![richmoshiur banner](https://i.postimg.cc/HnzNmdsh/rich.gif)
+
 ## Features
 
 - ✨ Bold, italic, and underline formatting
